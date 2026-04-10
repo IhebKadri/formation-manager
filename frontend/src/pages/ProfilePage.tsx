@@ -1,5 +1,5 @@
 import { UnderWork } from "@/components/common";
 
-export const MainPage = () => {
+export const ProfilePage = () => {
   return <UnderWork />;
 };
