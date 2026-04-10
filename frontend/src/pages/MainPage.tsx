@@ -1,10 +1,5 @@
-import { Button } from "@/components/ui/button";
+import { UnderWork } from "@/components/common";
 
 export const MainPage = () => {
-  return (
-    <div>
-      MainPage
-      <Button variant="default">Button</Button>
-    </div>
-  );
+  return <UnderWork />;
 };
