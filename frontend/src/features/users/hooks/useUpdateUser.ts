@@ -11,7 +11,7 @@ export const useUpdateUser = (id: string) => {
     mutationFn: apiService.put,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", id], exact: true });
+      queryClient.invalidateQueries({ queryKey: ["users"] });
       toast.success("Utilisateur mis à jour avec succès !");
     },
   });

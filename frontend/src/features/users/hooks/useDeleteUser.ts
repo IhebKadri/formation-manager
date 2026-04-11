@@ -10,7 +10,7 @@ export const useDeleteUser = (id: string) => {
   return useMutation({
     mutationFn: apiService.delete,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users", id], exact: true });
+      queryClient.invalidateQueries({ queryKey: ["users"] });
       toast.success("Utilisateur supprimé avec succès !");
     },
   });
