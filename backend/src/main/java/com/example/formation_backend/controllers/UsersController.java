@@ -32,14 +32,18 @@ public class UsersController {
     // ── GET /api/users ────────────────────────────────────────────
     @GetMapping
     @PreAuthorize("hasRole('ADMINISTRATEUR')")
-    public ResponseEntity<ApiResponse<List<UserResponse>>> getAll() {
-        List<UserResponse> users = userService.findAll();
-        ApiResponse<List<UserResponse>> response = new ApiResponse<>(
-                "Users retrieved successfully",
-                users
-        );
+    public ResponseEntity<List<UserResponse>> getAll(Authentication authentication) {
+        // 1. Get the full list
+        List<UserResponse> allUsers = userService.findAll();
 
-        return ResponseEntity.ok(response);
+        // 2. Filter out the current admin (yourself)
+        // We keep users whose email/username does NOT match the current authentication name
+        List<UserResponse> filteredUsers = allUsers.stream()
+                .filter(user -> !user.getLogin().equals(authentication.getName()))
+                .toList();
+
+        // 3. Return the FILTERED list
+        return ResponseEntity.ok(filteredUsers);
     }
 
     // ── GET /api/users/{id} ───────────────────────────────────────
