@@ -13,7 +13,7 @@ export function NavSections(section: NavigationSection) {
   const pathname = location.pathname;
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel>{section.labelKey}</SidebarGroupLabel>
       <SidebarMenu>
         {section.items.map((item: NavigationItem) => {
           const isActive =

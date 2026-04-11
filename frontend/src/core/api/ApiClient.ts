@@ -49,6 +49,7 @@ apiClient.interceptors.response.use(
 
     const statusCode = error.response?.status;
     const data = error.response?.data;
+    console.log(data);
 
     if (statusCode === 400 || statusCode === 422) {
       toast.error(
@@ -59,7 +60,8 @@ apiClient.interceptors.response.use(
 
     if (statusCode === 500) {
       toast.error(
-        "Un problème est survenu de notre côté. Veuillez réessayer dans quelques instants.",
+        data?.error?.message ||
+          "Un problème est survenu de notre côté. Veuillez réessayer dans quelques instants.",
       );
       return;
     }

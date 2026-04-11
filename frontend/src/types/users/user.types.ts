@@ -5,3 +5,10 @@ export type UserProfile = {
   login: string;
   role: UserRole;
 };
+
+export type UserPayload = {
+  id?: string;
+  login: string;
+  password?: string;
+  role: UserRole;
+};

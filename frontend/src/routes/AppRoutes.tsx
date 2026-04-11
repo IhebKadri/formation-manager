@@ -5,6 +5,8 @@ import { LoginPage } from "@/pages/LoginPage";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { ProfilePage } from "@/pages/ProfilePage";
 import { UnderWork } from "@/components/common";
+import { RequireRole } from "./RequireRole";
+import { UsersPage } from "@/pages/UsersPage";
 
 export const AppRoutes = () => {
   return (
@@ -25,17 +27,31 @@ export const AppRoutes = () => {
         <Route
           path="/formations"
           element={
-            <AppLayout>
-              <UnderWork />
-            </AppLayout>
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <UnderWork />
+              </AppLayout>
+            </RequireRole>
           }
         />
         <Route
           path="/profile"
           element={
-            <AppLayout>
-              <ProfilePage />
-            </AppLayout>
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <ProfilePage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR"]}>
+              <AppLayout>
+                <UsersPage />
+              </AppLayout>
+            </RequireRole>
           }
         />
       </Route>

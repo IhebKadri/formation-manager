@@ -1,4 +1,4 @@
-import type { UserProfile } from "./user.types";
+import type { UserProfile } from "../users/user.types";
 
 export type LoginPayload = {
   login: string;
