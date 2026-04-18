@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { MainPage } from "@/pages";
+import { MainPage, ProfilPage } from "@/pages";
 import { RequireAuth } from "./RequireAuth";
 import { LoginPage } from "@/pages/LoginPage";
 import { AppLayout } from "@/components/layout/AppLayout";
@@ -61,6 +61,16 @@ export const AppRoutes = () => {
             <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
               <AppLayout>
                 <StructuresPage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/profils"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <ProfilPage />
               </AppLayout>
             </RequireRole>
           }

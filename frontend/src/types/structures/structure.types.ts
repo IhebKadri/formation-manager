@@ -1,7 +1,5 @@
-import { UUID } from "../auth/auth.types";
-
 export interface Structure {
-  id: UUID;
+  id: string;
   libelle: string;
 }
 

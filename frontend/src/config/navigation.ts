@@ -7,6 +7,7 @@ import {
   Landmark,
   type LucideIcon,
   LayoutDashboard,
+  Briefcase,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -54,6 +55,13 @@ export const navigationSections: NavigationSection[] = [
         labelKey: "Structures",
         path: "/structures",
         icon: Landmark,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
+      },
+      {
+        id: "profils",
+        labelKey: "Profils",
+        path: "/profils",
+        icon: Briefcase,
         roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
     ],
