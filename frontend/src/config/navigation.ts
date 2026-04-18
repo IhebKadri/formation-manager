@@ -4,6 +4,7 @@ import {
   Settings,
   Library,
   Users,
+  Landmark,
   type LucideIcon,
   LayoutDashboard,
 } from "lucide-react";
@@ -47,6 +48,13 @@ export const navigationSections: NavigationSection[] = [
         path: "/users",
         icon: Users,
         roles: ["ADMINISTRATEUR"],
+      },
+      {
+        id: "structures",
+        labelKey: "Structures",
+        path: "/structures",
+        icon: Landmark,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
     ],
   },

@@ -7,6 +7,7 @@ import { ProfilePage } from "@/pages/ProfilePage";
 import { UnderWork } from "@/components/common";
 import { RequireRole } from "./RequireRole";
 import { UsersPage } from "@/pages/UsersPage";
+import StructuresPage from "@/pages/StructuresPage";
 
 export const AppRoutes = () => {
   return (
@@ -50,6 +51,16 @@ export const AppRoutes = () => {
             <RequireRole roles={["ADMINISTRATEUR"]}>
               <AppLayout>
                 <UsersPage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/structures"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <StructuresPage />
               </AppLayout>
             </RequireRole>
           }
