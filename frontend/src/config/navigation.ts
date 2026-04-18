@@ -8,6 +8,7 @@ import {
   type LucideIcon,
   LayoutDashboard,
   Briefcase,
+  IdCardLanyard,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -62,6 +63,13 @@ export const navigationSections: NavigationSection[] = [
         labelKey: "Profils",
         path: "/profils",
         icon: Briefcase,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
+      },
+      {
+        id: "participants",
+        labelKey: "Participants",
+        path: "/participants",
+        icon: IdCardLanyard,
         roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
     ],
