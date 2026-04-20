@@ -21,8 +21,8 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginPayload>({
     defaultValues: {
-      login: "JohnDoe",
-      password: "Password123",
+      login: "fedy_admin",
+      password: "fedy12356",
     },
   });
 

@@ -6,6 +6,8 @@ import {
   Users,
   type LucideIcon,
   LayoutDashboard,
+  IdCardLanyard,
+  Network,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -47,6 +49,20 @@ export const navigationSections: NavigationSection[] = [
         path: "/users",
         icon: Users,
         roles: ["ADMINISTRATEUR"],
+      },
+      {
+        id: "referentials",
+        labelKey: "Référentiels",
+        path: "/referentials",
+        icon: Network,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
+      },
+      {
+        id: "participants",
+        labelKey: "Participants",
+        path: "/participants",
+        icon: IdCardLanyard,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
     ],
   },

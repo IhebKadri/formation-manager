@@ -7,6 +7,8 @@ import { ProfilePage } from "@/pages/ProfilePage";
 import { UnderWork } from "@/components/common";
 import { RequireRole } from "./RequireRole";
 import { UsersPage } from "@/pages/UsersPage";
+import ReferentialPage from "@/pages/ReferentialPage";
+import ParticipantsPage from "@/pages/ParticipantsPage";
 
 export const AppRoutes = () => {
   return (
@@ -50,6 +52,26 @@ export const AppRoutes = () => {
             <RequireRole roles={["ADMINISTRATEUR"]}>
               <AppLayout>
                 <UsersPage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/referentials"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <ReferentialPage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/participants"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <ParticipantsPage />
               </AppLayout>
             </RequireRole>
           }
