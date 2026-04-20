@@ -18,48 +18,50 @@ interface ProfilItemProps {
 export const ProfilItem = ({ profil, onEdit, onDelete }: ProfilItemProps) => {
   const label = profil.libelle.toLowerCase();
 
-  // Color mapping based on hierarchy
   const getThemeColors = () => {
-    if (label.includes("cadre") || label.includes("supérieur") || label.includes("superieur")) {
-      return "bg-info/10 text-info border-info/20";
+    if (
+      label.includes("cadre") ||
+      label.includes("supérieur") ||
+      label.includes("superieur")
+    ) {
+      return "bg-info/10 text-info";
     }
     if (label.includes("technicien")) {
-      return "bg-success/10 text-success border-success/20";
+      return "bg-success/10 text-success";
     }
     if (label.includes("ouvrier")) {
-      return "bg-warning/10 text-warning border-warning/20";
+      return "bg-warning/10 text-warning";
     }
-    return "bg-muted text-muted-foreground border-border";
+    return "bg-muted text-muted-foreground";
   };
 
   return (
-    <div className="group relative flex items-center justify-between p-5 rounded-2xl border border-border bg-card transition-all hover:shadow-md hover:border-primary/20">
-      <div className="flex items-center gap-4">
-        <div className={`flex size-12 items-center justify-center rounded-xl border transition-transform group-hover:scale-110 ${getThemeColors()}`}>
-          <Briefcase className="size-6" />
-        </div>
-        <div>
-          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-            {profil.libelle}
-          </h3>
-          <p className="text-xs text-muted-foreground uppercase tracking-widest font-medium">
-            Profil Professionnel
-          </p>
-        </div>
+    <div
+      key={profil.id}
+      className="group flex items-center space-x-4 p-4 transition-colors hover:bg-muted/50"
+    >
+      <div
+        className={`flex shrink-0 items-center justify-center rounded-lg p-2 ${getThemeColors()}`}
+      >
+        <Briefcase className="size-5" />
       </div>
-
+      <div className="flex-1 min-w-0">
+        <h3 className="truncate text-sm font-semibold text-foreground">
+          {profil.libelle}
+        </h3>
+        <p className="text-xs text-muted-foreground">Profil Professionnel</p>
+      </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-9 rounded-full hover:bg-muted"
-          >
+          <Button variant="ghost" size="icon" className="size-8 rounded-full">
             <MoreVertical className="size-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-40">
-          <DropdownMenuItem onClick={() => onEdit(profil)} className="cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => onEdit(profil)}
+            className="cursor-pointer"
+          >
             <Pencil className="mr-2 size-4" />
             Modifier
           </DropdownMenuItem>

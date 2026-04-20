@@ -1,18 +1,11 @@
-import { Building2, Landmark, MapPin, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { Landmark } from "lucide-react";
 import type { Structure } from "@/types/structures/structure.types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import { UpdateStructureDialog } from "./dialogs/UpdateStructureDialog";
 import { DeleteStructureDialog } from "./dialogs/DeleteStructureDialog";
 import { useUpdateStructure, useDeleteStructure } from "../hooks";
+import { StructureCard } from "./StructureCard";
 
 interface StructureListProps {
   structures: Structure[];
@@ -25,7 +18,6 @@ export function StructureList({ structures, isLoading }: StructureListProps) {
 
   const selectedForUpdate = structures.find((s) => s.id === updatingId);
   const selectedForDelete = structures.find((s) => s.id === deletingId);
-
 
   if (isLoading) {
     return (
@@ -47,73 +39,12 @@ export function StructureList({ structures, isLoading }: StructureListProps) {
     <>
       <div className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
         {structures.map((structure) => {
-          const isCentrale = structure.libelle.toLowerCase().includes("centrale");
-          const isRegionale =
-            structure.libelle.toLowerCase().includes("région") ||
-            structure.libelle.toLowerCase().includes("region") ||
-            structure.libelle.toLowerCase().includes("régionale");
-
           return (
-            <div
-              key={structure.id}
-              className="group flex items-center space-x-4 p-4 transition-colors hover:bg-muted/50"
-            >
-              <div
-                className={`flex shrink-0 items-center justify-center rounded-lg p-2 ${
-                  isCentrale
-                    ? "bg-info/10 text-info"
-                    : isRegionale
-                      ? "bg-success/10 text-success"
-                      : "bg-muted-foreground/10 text-muted-foreground"
-                }`}
-              >
-                {isCentrale ? (
-                  <Building2 className="size-5" />
-                ) : isRegionale ? (
-                  <MapPin className="size-5" />
-                ) : (
-                  <Landmark className="size-5" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="truncate text-sm font-semibold text-foreground">
-                  {structure.libelle}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {isCentrale
-                    ? "Direction Centrale"
-                    : isRegionale
-                      ? "Direction Régionale"
-                      : "Structure de formation"}
-                </p>
-              </div>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-8 rounded-full"
-                  >
-                    <MoreVertical className="size-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
-                  <DropdownMenuItem onClick={() => setUpdatingId(structure.id)}>
-                    <Pencil className="mr-2 size-4" />
-                    Modifier
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    className="text-destructive focus:bg-destructive/10 focus:text-destructive"
-                    onClick={() => setDeletingId(structure.id)}
-                  >
-                    <Trash2 className="mr-2 size-4" />
-                    Supprimer
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            <StructureCard
+              structure={structure}
+              setUpdatingId={setUpdatingId}
+              setDeletingId={setDeletingId}
+            />
           );
         })}
 

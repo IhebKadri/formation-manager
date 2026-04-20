@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ProfilsHeader } from "./ProfilsHeader";
 import { ProfilsList } from "./ProfilsList";
 import { CreateProfilDialog } from "./dialogs/CreateProfilDialog";
 import { UpdateProfilDialog } from "./dialogs/UpdateProfilDialog";
 import { DeleteProfilDialog } from "./dialogs/DeleteProfilDialog";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import {
   useProfils,
   useCreateProfil,
@@ -27,8 +28,22 @@ export const Profils = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <ProfilsHeader onAdd={() => setIsCreateOpen(true)} />
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h2 className="text-xl font-semibold tracking-tight">Profils</h2>
+          <p className="text-sm text-muted-foreground">
+            Gestion des profils professionnels
+          </p>
+        </div>
+        <Button 
+          onClick={() => setIsCreateOpen(true)}
+          className="rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95"
+        >
+          <Plus className="mr-2 size-4" />
+          Nouveau Profil
+        </Button>
+      </div>
 
       <ProfilsList
         profils={profils}

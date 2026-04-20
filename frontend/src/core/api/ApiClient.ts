@@ -51,11 +51,13 @@ apiClient.interceptors.response.use(
     const data = error.response?.data;
     console.log(data);
 
-    if (statusCode === 400 || statusCode === 422) {
-      toast.error(
-        data?.error?.message || "Une erreur est survenue lors de la validation",
-      );
-      return;
+    if (statusCode === 400 || statusCode === 409 || statusCode === 422) {
+      const message =
+        data?.error?.message ||
+        (data as any)?.message ||
+        "Une erreur est survenue lors de la validation";
+      toast.error(message);
+      return Promise.reject(error);
     }
 
     if (statusCode === 500) {

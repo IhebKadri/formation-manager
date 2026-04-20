@@ -88,7 +88,7 @@ export const ParticipantsList = ({
       columns={columns}
       data={participants}
       isLoading={isLoading}
-      searchKey="nom"
+      searchKey="prenom"
     />
   );
 };

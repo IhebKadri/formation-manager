@@ -11,30 +11,38 @@ import {
   useUpdateParticipant,
   useDeleteParticipant,
 } from "../hooks";
-import type { Participant, ParticipantFormValues } from "@/types";
+import type {
+  Participant,
+  ParticipantFormValues,
+  CreateParticipantRequest,
+  UpdateParticipantRequest,
+} from "@/types";
 
 export const Participants = () => {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [editingParticipant, setEditingParticipant] = useState<Participant | null>(null);
-  const [deletingParticipant, setDeletingParticipant] = useState<Participant | null>(null);
+  const [editingParticipant, setEditingParticipant] =
+    useState<Participant | null>(null);
+  const [deletingParticipant, setDeletingParticipant] =
+    useState<Participant | null>(null);
 
   const { data: participants = [], isLoading } = useParticipants();
-  const { mutate: createMutate, isPending: isCreating } = useCreateParticipant();
+  const { mutate: createMutate, isPending: isCreating } =
+    useCreateParticipant();
   const { mutate: updateMutate, isPending: isUpdating } = useUpdateParticipant(
-    editingParticipant?.id || ""
+    editingParticipant?.id || "",
   );
   const { mutate: deleteMutate, isPending: isDeleting } = useDeleteParticipant(
-    deletingParticipant?.id || ""
+    deletingParticipant?.id || "",
   );
 
   const handleCreate = (values: ParticipantFormValues) => {
-    createMutate(values, {
+    createMutate(values as CreateParticipantRequest, {
       onSuccess: () => setIsCreateOpen(false),
     });
   };
 
   const handleUpdate = (values: ParticipantFormValues) => {
-    updateMutate(values, {
+    updateMutate(values as UpdateParticipantRequest, {
       onSuccess: () => setEditingParticipant(null),
     });
   };

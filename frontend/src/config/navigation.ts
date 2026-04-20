@@ -4,11 +4,10 @@ import {
   Settings,
   Library,
   Users,
-  Landmark,
   type LucideIcon,
   LayoutDashboard,
-  Briefcase,
   IdCardLanyard,
+  Network,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -52,17 +51,10 @@ export const navigationSections: NavigationSection[] = [
         roles: ["ADMINISTRATEUR"],
       },
       {
-        id: "structures",
-        labelKey: "Structures",
-        path: "/structures",
-        icon: Landmark,
-        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
-      },
-      {
-        id: "profils",
-        labelKey: "Profils",
-        path: "/profils",
-        icon: Briefcase,
+        id: "referentials",
+        labelKey: "Référentiels",
+        path: "/referentials",
+        icon: Network,
         roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
       {
