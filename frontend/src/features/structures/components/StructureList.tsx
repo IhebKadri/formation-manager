@@ -41,6 +41,7 @@ export function StructureList({ structures, isLoading }: StructureListProps) {
         {structures.map((structure) => {
           return (
             <StructureCard
+              key={structure.id}
               structure={structure}
               setUpdatingId={setUpdatingId}
               setDeletingId={setDeletingId}
