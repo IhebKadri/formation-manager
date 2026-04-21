@@ -8,10 +8,10 @@ import {
 } from "lucide-react";
 
 export const STAT_CONFIGS = [
-  { key: "totalUsers", title: "Total Users", icon: Users },
-  { key: "totalProfils", title: "Total Profils", icon: Briefcase },
-  { key: "totalStructures", title: "Total Structures", icon: Network },
-  { key: "totalParticipants", title: "Total Participants", icon: IdCard },
+  { key: "totalUsers", title: "Total des utilisateurs", icon: Users },
+  { key: "totalProfils", title: "Total des profils", icon: Briefcase },
+  { key: "totalStructures", title: "Total des structures", icon: Network },
+  { key: "totalParticipants", title: "Total des participants", icon: IdCard },
 ] as const satisfies readonly {
   key: keyof Stats;
   title: string;
