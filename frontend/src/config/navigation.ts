@@ -1,7 +1,6 @@
 import type { UserRole } from "@/types";
 import {
   User,
-  Settings,
   Library,
   Users,
   type LucideIcon,
@@ -55,7 +54,7 @@ export const navigationSections: NavigationSection[] = [
         labelKey: "Référentiels",
         path: "/referentials",
         icon: Network,
-        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
+        roles: ["ADMINISTRATEUR"],
       },
       {
         id: "participants",
@@ -76,13 +75,6 @@ export const navigationSections: NavigationSection[] = [
         labelKey: "Mon profil",
         path: "/profile",
         icon: User,
-        roles: ["SIMPLE_UTILISATEUR", "ADMINISTRATEUR", "RESPONSABLE"],
-      },
-      {
-        id: "settings",
-        labelKey: "Paramètres",
-        path: "/settings",
-        icon: Settings,
         roles: ["SIMPLE_UTILISATEUR", "ADMINISTRATEUR", "RESPONSABLE"],
       },
     ],

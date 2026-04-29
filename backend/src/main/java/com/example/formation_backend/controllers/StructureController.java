@@ -33,7 +33,7 @@ public class StructureController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<StructureResponseDTO> create(
             @Valid @RequestBody StructureRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -41,7 +41,7 @@ public class StructureController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<StructureResponseDTO> update(
             @PathVariable UUID id,
             @Valid @RequestBody StructureRequestDTO dto) {
@@ -49,7 +49,7 @@ public class StructureController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         structureService.delete(id);
         return ResponseEntity.noContent().build();

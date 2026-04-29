@@ -39,7 +39,9 @@ export const AppRoutes = () => {
         <Route
           path="/profile"
           element={
-            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+            <RequireRole
+              roles={["RESPONSABLE", "ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}
+            >
               <AppLayout>
                 <ProfilePage />
               </AppLayout>
