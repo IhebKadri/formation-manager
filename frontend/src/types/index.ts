@@ -4,3 +4,5 @@ export * from "./structures/structure.types";
 export * from "./profils/profils.types";
 export * from "./participants/participant.types";
 export * from "./participants/participant.schema";
+export * from "./domaines/domaine.types";
+export * from "./employeurs/employeur.types";

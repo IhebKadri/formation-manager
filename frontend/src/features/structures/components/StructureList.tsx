@@ -35,6 +35,15 @@ export function StructureList({ structures, isLoading }: StructureListProps) {
     );
   }
 
+  if (structures.length === 0) {
+    return (
+      <div className="flex h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground">
+        <Landmark className="mb-4 size-12 opacity-20" />
+        <p className="text-sm font-medium">Aucune structure trouvée</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
@@ -48,13 +57,6 @@ export function StructureList({ structures, isLoading }: StructureListProps) {
             />
           );
         })}
-
-        {structures.length === 0 && (
-          <div className="flex h-32 flex-col items-center justify-center text-muted-foreground">
-            <Landmark className="mb-2 size-8 opacity-20" />
-            <p className="text-sm">Aucune structure trouvée</p>
-          </div>
-        )}
       </div>
 
       {selectedForUpdate && (
