@@ -42,6 +42,15 @@ export function EmployeurList({ employeurs, isLoading }: EmployeurListProps) {
     );
   }
 
+  if (employeurs.length === 0) {
+    return (
+      <div className="flex h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground">
+        <Building className="mb-4 size-12 opacity-20" />
+        <p className="text-sm font-medium">Aucun employeur trouvé</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
@@ -53,13 +62,6 @@ export function EmployeurList({ employeurs, isLoading }: EmployeurListProps) {
             setDeletingId={setDeletingId}
           />
         ))}
-
-        {employeurs.length === 0 && (
-          <div className="flex h-64 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground">
-            <Building className="mb-4 size-12 opacity-20" />
-            <p className="text-sm font-medium">Aucun employeur trouvé</p>
-          </div>
-        )}
       </div>
 
       {selectedForUpdate && (
