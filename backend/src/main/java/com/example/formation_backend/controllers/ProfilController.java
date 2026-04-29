@@ -33,7 +33,7 @@ public class ProfilController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<ProfilResponseDTO> create(
             @Valid @RequestBody ProfilRequestDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -41,7 +41,7 @@ public class ProfilController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<ProfilResponseDTO> update(
             @PathVariable UUID id,
             @Valid @RequestBody ProfilRequestDTO dto) {
@@ -49,7 +49,7 @@ public class ProfilController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMINISTRATEUR','SIMPLE_UTILISATEUR')")
+    @PreAuthorize("hasAnyRole('ADMINISTRATEUR')")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         profilService.delete(id);
         return ResponseEntity.noContent().build();
