@@ -1,14 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import { MainPage } from "@/pages";
 import { RequireAuth } from "./RequireAuth";
-import { LoginPage } from "@/pages/LoginPage";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { ProfilePage } from "@/pages/ProfilePage";
 import { UnderWork } from "@/components/common";
 import { RequireRole } from "./RequireRole";
-import { UsersPage } from "@/pages/UsersPage";
-import ReferentialPage from "@/pages/ReferentialPage";
-import ParticipantsPage from "@/pages/ParticipantsPage";
+import {
+  ReferentialPage,
+  ParticipantsPage,
+  FormateursPage,
+  MainPage,
+  UsersPage,
+  LoginPage,
+  ProfilePage
+} from "@/pages";
 
 export const AppRoutes = () => {
   return (
@@ -74,6 +77,16 @@ export const AppRoutes = () => {
             <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
               <AppLayout>
                 <ParticipantsPage />
+              </AppLayout>
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/formateurs"
+          element={
+            <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
+              <AppLayout>
+                <FormateursPage />
               </AppLayout>
             </RequireRole>
           }

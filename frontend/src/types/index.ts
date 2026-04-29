@@ -6,3 +6,5 @@ export * from "./participants/participant.types";
 export * from "./participants/participant.schema";
 export * from "./domaines/domaine.types";
 export * from "./employeurs/employeur.types";
+export * from "./formateurs/formateur.types";
+export * from "./formateurs/formateur.schema";

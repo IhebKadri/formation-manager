@@ -5,7 +5,7 @@ import { Domaines } from "@/features/domaine";
 import { Employeurs } from "@/features/employeur";
 import { Building2, Briefcase, BookOpen, Building } from "lucide-react";
 
-export default function ReferentialPage() {
+export const ReferentialPage = () => {
 
   return (
     <div className="p-6 space-y-6">

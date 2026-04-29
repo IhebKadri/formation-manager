@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   IdCardLanyard,
   Network,
+  GraduationCap,
 } from "lucide-react";
 
 export interface NavigationItem {
@@ -61,6 +62,13 @@ export const navigationSections: NavigationSection[] = [
         labelKey: "Participants",
         path: "/participants",
         icon: IdCardLanyard,
+        roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
+      },
+      {
+        id: "formateurs",
+        labelKey: "Formateurs",
+        path: "/formateurs",
+        icon: GraduationCap,
         roles: ["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"],
       },
     ],
