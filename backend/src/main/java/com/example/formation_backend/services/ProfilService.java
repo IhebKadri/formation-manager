@@ -62,6 +62,9 @@ public class ProfilService {
         if (!profilRepository.existsById(id)) {
             throw new ResourceNotFoundException("Profil non trouvé avec l'id: " + id);
         }
+        if (participantRepository.existsByProfilId(id)) {
+            throw new RuntimeException("Impossible de supprimer ce profil car il est lié à un ou plusieurs participants.");
+        }
         profilRepository.deleteById(id);
     }
 

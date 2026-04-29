@@ -11,4 +11,6 @@ public interface ParticipantRepository extends JpaRepository<Participant, UUID> 
     boolean existsByEmailAndIdNot(String email, UUID id);
     List<Participant> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(
         String nom, String prenom);
+    boolean existsByStructureId(UUID structureId);
+    boolean existsByProfilId(UUID profilId);
 }
