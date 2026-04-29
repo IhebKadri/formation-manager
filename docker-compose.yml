@@ -10,9 +10,16 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d formation_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: formation-backend
     ports:
       - "8080:8080"
@@ -24,18 +31,15 @@ services:
       - JWT_ACCESS_EXPIRATION=3600000
       - JWT_REFRESH_EXPIRATION=86400000
       - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=dev
+    volumes:
+      - ./backend/src:/app/src # live source watching
+      - ./backend/pom.xml:/app/pom.xml # dependency changes
+      - maven-cache:/root/.m2 # cached dependencies
     depends_on:
-      - db
-
-  frontend:
-    build: ./frontend
-    container_name: formation-frontend
-    ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:8080/api
-    depends_on:
-      - backend
+      db:
+        condition: service_healthy # waits for postgres to be ready
 
 volumes:
   postgres_data:
+  maven-cache:
