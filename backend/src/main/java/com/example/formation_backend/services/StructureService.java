@@ -57,6 +57,9 @@ public class StructureService {
         if (!structureRepository.existsById(id)) {
             throw new com.example.formation_backend.exceptions.ResourceNotFoundException("Structure non trouvée");
         }
+        if (participantRepository.existsByStructureId(id)) {
+            throw new RuntimeException("Impossible de supprimer cette structure car elle est liée à un ou plusieurs participants.");
+        }
         structureRepository.deleteById(id);
     }
 
