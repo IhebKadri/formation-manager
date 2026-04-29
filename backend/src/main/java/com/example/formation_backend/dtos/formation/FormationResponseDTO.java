@@ -1,6 +1,10 @@
 package com.example.formation_backend.dtos.formation;
 
+import com.example.formation_backend.dtos.domaine.DomaineResponseDTO;
+import com.example.formation_backend.dtos.formateur.FormateurResponseDTO;
+import com.example.formation_backend.dtos.participants.ParticipantResponse;
 import lombok.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data 
@@ -14,11 +18,8 @@ public class FormationResponseDTO {
     private int    duree;
     private double budget;
     
-    // Flattened Domaine info
-    private UUID   domaineId;
-    private String domaineLibelle;
-    
-    // Flattened Formateur info
-    private UUID   formateurId;
-    private String formateurNomComplet; // "Prenom Nom"
+    private DomaineResponseDTO domaine;
+    private FormateurResponseDTO formateur;
+
+    private List<ParticipantResponse> participants;
 }

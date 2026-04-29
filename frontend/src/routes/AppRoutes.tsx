@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { RequireAuth } from "./RequireAuth";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { UnderWork } from "@/components/common";
 import { RequireRole } from "./RequireRole";
 import {
   ReferentialPage,
@@ -10,7 +9,8 @@ import {
   MainPage,
   UsersPage,
   LoginPage,
-  ProfilePage
+  ProfilePage,
+  FormationsPage,
 } from "@/pages";
 
 export const AppRoutes = () => {
@@ -34,7 +34,7 @@ export const AppRoutes = () => {
           element={
             <RequireRole roles={["ADMINISTRATEUR", "SIMPLE_UTILISATEUR"]}>
               <AppLayout>
-                <UnderWork />
+                <FormationsPage />
               </AppLayout>
             </RequireRole>
           }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -43,4 +45,13 @@ public class Formation {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "inscriptions",
+        joinColumns = @JoinColumn(name = "formation_id"),
+        inverseJoinColumns = @JoinColumn(name = "participant_id")
+    )
+    @Builder.Default
+    private List<Participant> participants = new ArrayList<>();
 }

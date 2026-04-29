@@ -58,7 +58,7 @@ public class DomaineService {
         domaineRepository.deleteById(id);
     }
 
-    private DomaineResponseDTO toResponseDTO(Domaine d) {
+    public DomaineResponseDTO toResponseDTO(Domaine d) {
         return DomaineResponseDTO.builder()
                 .id(d.getId())
                 .libelle(d.getLibelle())

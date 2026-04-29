@@ -2,6 +2,7 @@ package com.example.formation_backend.dtos.formation;
 
 import jakarta.validation.constraints.*;
 import lombok.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data 
@@ -27,4 +28,6 @@ public class FormationRequestDTO {
     private UUID domaineId;
 
     private UUID formateurId;
+    
+    private List<UUID> participantIds;
 }
