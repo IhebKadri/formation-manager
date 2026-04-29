@@ -3,6 +3,7 @@ package com.example.formation_backend.services;
 import com.example.formation_backend.dtos.profil.ProfilRequestDTO;
 import com.example.formation_backend.dtos.profil.ProfilResponseDTO;
 import com.example.formation_backend.entities.Profil;
+import com.example.formation_backend.repositories.ParticipantRepository;
 import com.example.formation_backend.repositories.ProfilRepository;
 import com.example.formation_backend.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class ProfilService {
 
     private final ProfilRepository profilRepository;
+    private final ParticipantRepository participantRepository;
 
     @Transactional(readOnly = true)
     public List<ProfilResponseDTO> findAll() {

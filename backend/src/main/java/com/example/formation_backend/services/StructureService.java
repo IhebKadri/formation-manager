@@ -3,6 +3,7 @@ package com.example.formation_backend.services;
 import com.example.formation_backend.dtos.structure.StructureRequestDTO;
 import com.example.formation_backend.dtos.structure.StructureResponseDTO;
 import com.example.formation_backend.entities.Structure;
+import com.example.formation_backend.repositories.ParticipantRepository;
 import com.example.formation_backend.repositories.StructureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class StructureService {
 
     private final StructureRepository structureRepository;
+    private final ParticipantRepository participantRepository;
 
     public StructureResponseDTO findById(UUID id) {
         Structure structure = structureRepository.findById(id)
