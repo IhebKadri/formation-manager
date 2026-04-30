@@ -42,6 +42,7 @@ export const UserForm = ({
   } = useForm<UserPayload>({
     defaultValues: initialData || {
       login: "",
+      email: "",
       role: "SIMPLE_UTILISATEUR",
     },
   });
@@ -54,28 +55,48 @@ export const UserForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 py-4">
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {/* Login Field */}
         <div className="space-y-2">
           <Label htmlFor="login">Nom d'utilisateur</Label>
           <Input
             id="login"
             placeholder="jean.dupont"
+            disabled={isEdit}
             {...register("login", {
-              required: "L'identifiant est requis",
+              required: !isEdit && "Le nom d'utilisateur est obligatoire",
               minLength: {
                 value: 3,
-                message: "L'identifiant doit contenir au moins 3 caractères",
-              },
-              maxLength: {
-                value: 50,
-                message: "L'identifiant doit contenir au plus 50 caractères",
+                message: "Le nom d'utilisateur doit contenir au moins 3 caractères",
               },
             })}
           />
           {errors.login && (
             <p className="text-[0.8rem] font-medium text-destructive">
               {errors.login.message}
+            </p>
+          )}
+        </div>
+
+        {/* Email Field */}
+        <div className="space-y-2">
+          <Label htmlFor="email">Adresse email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="jean.dupont@example.com"
+            disabled={isEdit}
+            {...register("email", {
+              required: !isEdit && "L'adresse email est obligatoire",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "L'adresse email doit être valide",
+              },
+            })}
+          />
+          {errors.email && (
+            <p className="text-[0.8rem] font-medium text-destructive">
+              {errors.email.message}
             </p>
           )}
         </div>
@@ -109,30 +130,13 @@ export const UserForm = ({
           )}
         </div>
 
-        {/* Password Field */}
-        <div className="space-y-2">
-          <Label htmlFor="password">
-            Mot de passe{" "}
-            {isEdit && (
-              <span className="text-muted-foreground text-xs font-normal">
-                (Optionnel pour la modification)
-              </span>
-            )}
-          </Label>
-          <Input
-            id="password"
-            type="password"
-            placeholder={isEdit ? "••••••••" : "Entrez le mot de passe"}
-            {...register("password", {
-              required: isEdit ? false : "Le mot de passe est requis",
-              minLength: {
-                value: 6,
-                message: "Le mot de passe doit contenir au moins 6 caractères",
-              },
-            })}
-            error={errors.password?.message}
-          />
-        </div>
+        {!isEdit && (
+          <div className="md:col-span-2 rounded-md bg-blue-50 p-4 border border-blue-200">
+            <p className="text-sm text-blue-700">
+              Un mot de passe aléatoire sera généré et envoyé par email à l'utilisateur.
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="flex justify-end gap-3 pt-2">
@@ -145,7 +149,7 @@ export const UserForm = ({
           Annuler
         </Button>
         <Button type="submit" isLoading={isLoading}>
-          {isEdit ? "Mettre à jour" : "Créer l'utilisateur"}
+          {isEdit ? "Mettre à jour le rôle" : "Créer l'utilisateur"}
         </Button>
       </div>
     </form>

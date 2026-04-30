@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 public class UpdateUser {
 
-    @Size(min = 3, max = 50, message = "Login doit contenir entre 3 et 50 caractères")
+    @Size(min = 3, max = 50, message = "Le nom d'utilisateur doit contenir entre 3 et 50 caractères")
     private String login;
 
-    @Size(min = 6, message = "Mot de passe doit contenir au moins 6 caractères")
-    private String password; // optional — only update if provided
+    @Email(message = "L'adresse email doit être valide")
+    private String email;
 
     private Role.RoleNom role;
 }

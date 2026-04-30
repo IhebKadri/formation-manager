@@ -1,20 +1,17 @@
 package com.example.formation_backend.dtos.users;
 
-import com.example.formation_backend.entities.Role;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class CreateUser {
+public class UpdateProfile {
 
-    @NotBlank(message = "Le nom d'utilisateur est obligatoire")
     @Size(min = 3, max = 50, message = "Le nom d'utilisateur doit contenir entre 3 et 50 caractères")
     private String login;
 
-    @NotBlank(message = "L'adresse email est obligatoire")
     @Email(message = "L'adresse email doit être valide")
     private String email;
 
-    @NotNull(message = "Le rôle est obligatoire")
-    private Role.RoleNom role;
+    @Size(min = 6, message = "Le mot de passe doit contenir au moins 6 caractères")
+    private String password;
 }
