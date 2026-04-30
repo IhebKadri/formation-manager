@@ -22,6 +22,7 @@ public class DataSeeder implements CommandLineRunner {
 
         String username = "fedy_admin";
         String password = "fedy12356";
+        String email = "green.building.training@gmail.com";
 
         // 1. Create roles if they don't exist
         for (Role.RoleNom roleName : Role.RoleNom.values()) {
@@ -38,12 +39,13 @@ public class DataSeeder implements CommandLineRunner {
 
             Utilisateur user = Utilisateur.builder()
                     .login(username)
+                    .email(email)
                     .password(passwordEncoder.encode(password))
                     .role(role)
                     .build();
 
             utilisateurRepository.save(user);
-            System.out.println("✅ Simple user seeded — login: "+ user + "/ password: +"+password);
+            System.out.println("✅ Admin user seeded — login: " + username + " / email: " + email + " / password: " + password);
         }
     }
 }

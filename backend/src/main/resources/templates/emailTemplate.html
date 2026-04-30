@@ -1,0 +1,123 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenue sur Formation Manager</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #1e1e1e; /* Primary color based on app theme */
+        color: #ffffff;
+        padding: 30px;
+        text-align: center;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: 1px;
+      }
+      .content {
+        padding: 40px;
+        line-height: 1.6;
+      }
+      .credentials {
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .credential-item {
+        margin: 10px 0;
+      }
+      .label {
+        font-weight: bold;
+        color: #666;
+        width: 110px;
+        display: inline-block;
+      }
+      .value {
+        font-family: monospace;
+        background: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #000;
+        font-size: 1.1em;
+      }
+      .footer {
+        background-color: #f9f9f9;
+        color: #888;
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        border-top: 1px solid #eee;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1e1e1e;
+        color: #ffffff !important;
+        text-decoration: none;
+        border-radius: 6px;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Green Building</h1>
+      </div>
+      <div class="content">
+        <h2 style="color: #1e1e1e">Bienvenue !</h2>
+        <p>Bonjour <strong th:text="${login}">Utilisateur</strong>,</p>
+        <p>
+          Votre compte a été créé avec succès sur notre plateforme de gestion
+          des formations. Vous pouvez désormais vous connecter en utilisant les
+          identifiants ci-dessous :
+        </p>
+
+        <div class="credentials">
+          <div class="credential-item">
+            <span class="label">Identifiant :</span>
+            <span class="value" th:text="${login}">login_placeholder</span>
+          </div>
+          <div class="credential-item">
+            <span class="label">Mot de passe :</span>
+            <span class="value" th:text="${password}"
+              >password_placeholder</span
+            >
+          </div>
+        </div>
+
+        <p>
+          Pour des raisons de sécurité, nous vous recommandons vivement de
+          modifier votre mot de passe dès votre première connexion.
+        </p>
+
+        <a href="http://localhost:5173/login" class="btn"
+          >Se connecter à l'application</a
+        >
+      </div>
+      <div class="footer">
+        &copy; 2026 Green Building. Tous droits réservés.
+      </div>
+    </div>
+  </body>
+</html>

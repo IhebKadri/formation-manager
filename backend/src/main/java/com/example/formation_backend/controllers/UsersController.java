@@ -2,6 +2,7 @@ package com.example.formation_backend.controllers;
 
 import com.example.formation_backend.dtos.auth.UserResponse;
 import com.example.formation_backend.dtos.users.CreateUser;
+import com.example.formation_backend.dtos.users.UpdateProfile;
 import com.example.formation_backend.dtos.users.UpdateUser;
 import com.example.formation_backend.services.UserService;
 import com.example.formation_backend.utils.ApiResponse;
@@ -65,15 +66,29 @@ public class UsersController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(request));
     }
 
-    // ── PUT /api/users/{id} ───────────────────────────────────────
+    // ── PUT /api/users/me ─────────────────────────────────────────
+    @PutMapping("/me")
+    public ResponseEntity<ApiResponse<UserResponse>> updateMe(Authentication authentication,
+                                                            @Valid @RequestBody UpdateProfile request) {
+
+        UserResponse updatedUser = userService.updateMe(authentication.getName(), request);
+        ApiResponse<UserResponse> response = new ApiResponse<>(
+                "Profil mis à jour avec succès",
+                updatedUser
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    // ── PUT /api/users/{id} (Admin - Role only) ───────────────────
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMINISTRATEUR')")
     public ResponseEntity<ApiResponse<UserResponse>> update(@PathVariable UUID id,
-                                                  @Valid @RequestBody UpdateUser request) {
+                                                   @Valid @RequestBody UpdateUser request) {
 
         UserResponse updatedUser = userService.update(id, request);
         ApiResponse<UserResponse> response = new ApiResponse<>(
-                "User Updated successfully",
+                "Rôle utilisateur mis à jour avec succès",
                 updatedUser
         );
 

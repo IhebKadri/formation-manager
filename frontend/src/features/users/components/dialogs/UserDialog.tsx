@@ -18,15 +18,13 @@ interface UserDialogProps {
 
 export const UserDialog = ({ user, open, onOpenChange }: UserDialogProps) => {
   const { mutate: createUser, isPending: isCreatePending } = useCreateUser();
-  const { mutate: updateUser, isPending: isUpdatePending } = useUpdateUser(
-    user?.id,
-  );
+  const { mutate: updateUser, isPending: isUpdatePending } = useUpdateUser(user?.id);
 
   const isEdit = !!user;
   const isLoading = isCreatePending || isUpdatePending;
 
   const handleSubmit = (data: UserPayload) => {
-    if (isEdit && user) {
+    if (isEdit) {
       updateUser(data);
     } else {
       createUser(data);
@@ -39,24 +37,16 @@ export const UserDialog = ({ user, open, onOpenChange }: UserDialogProps) => {
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>
-            {isEdit ? "Modifier l'utilisateur" : "Nouvel utilisateur"}
+            {isEdit ? "Modifier le rôle" : "Nouvel utilisateur"}
           </DialogTitle>
           <DialogDescription>
             {isEdit
-              ? "Modifiez les informations de l'utilisateur."
+              ? "Modifiez le rôle de cet utilisateur."
               : "Remplissez le formulaire pour créer un nouvel utilisateur."}
           </DialogDescription>
         </DialogHeader>
         <UserForm
-          initialData={
-            user
-              ? {
-                  id: user.id,
-                  login: user.login,
-                  role: user.role,
-                }
-              : null
-          }
+          initialData={user}
           onSubmit={handleSubmit}
           onCancel={() => onOpenChange(false)}
           isLoading={isLoading}

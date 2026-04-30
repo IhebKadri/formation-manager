@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, UUID> {
     Optional<Utilisateur> findByLogin(String login);
+    Optional<Utilisateur> findByEmail(String email);
 
     @Query("SELECT u.role.nom, COUNT(u) FROM Utilisateur u GROUP BY u.role.nom")
     List<Object[]> countByRole();

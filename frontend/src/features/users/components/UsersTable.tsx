@@ -1,5 +1,4 @@
-import type { ColumnDef } from "@tanstack/react-table";
-import { DataTable } from "@/components/common/DataTable";
+import { type ColumnDef } from "@tanstack/react-table";
 import { sortableHeader } from "@/lib/table-utils";
 import { useUsers } from "../hooks/useUsers";
 import { Button } from "@/components/ui/button";
@@ -10,8 +9,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontalIcon } from "lucide-react";
+import { MoreHorizontalIcon, Edit, Trash } from "lucide-react";
 import type { UserProfile } from "@/types";
+import { DataTable } from "@/components/common/DataTable";
 
 interface UsersTableProps {
   onEdit: (user: UserProfile) => void;
@@ -27,8 +27,17 @@ export function UsersTable({ onEdit, onDelete }: UsersTableProps) {
       header: sortableHeader("Utilisateur"),
     },
     {
+      accessorKey: "email",
+      header: sortableHeader("Email"),
+    },
+    {
       accessorKey: "role",
-      header: sortableHeader("Role"),
+      header: sortableHeader("Rôle"),
+      cell: ({ row }) => (
+        <span className="capitalize">
+          {row.getValue<string>("role").toLowerCase().replace("_", " ")}
+        </span>
+      ),
     },
     {
       id: "actions",
@@ -45,6 +54,7 @@ export function UsersTable({ onEdit, onDelete }: UsersTableProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onEdit(user)}>
+                  <Edit className="mr-2 h-4 w-4" />
                   Modifier
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -52,6 +62,7 @@ export function UsersTable({ onEdit, onDelete }: UsersTableProps) {
                   variant="destructive"
                   onClick={() => onDelete(user)}
                 >
+                  <Trash className="mr-2 h-4 w-4" />
                   Supprimer
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -63,11 +74,6 @@ export function UsersTable({ onEdit, onDelete }: UsersTableProps) {
   ];
 
   return (
-    <DataTable
-      columns={columns}
-      data={users || []}
-      isLoading={isLoading}
-      searchKey="login"
-    />
+    <DataTable columns={columns} data={users || []} isLoading={isLoading} />
   );
 }

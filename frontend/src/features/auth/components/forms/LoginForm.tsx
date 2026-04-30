@@ -45,7 +45,7 @@ export const LoginForm = () => {
           noValidate
           className="space-y-2"
         >
-          {/* Email Field */}
+          {/* Login Field */}
           <div className="flex flex-col gap-1">
             <Label htmlFor="name">Nom d'utilisateur</Label>
             <Input
@@ -53,11 +53,14 @@ export const LoginForm = () => {
               type="text"
               placeholder="Entrez votre nom d'utilisateur"
               {...register("login", {
-                required: "nom d'utilisateur est obligatoire",
+                required: "Le nom d'utilisateur est obligatoire",
                 minLength: {
-                  value: 6,
-                  message:
-                    "Le mot de passe doit contenir au moins 6 caractères",
+                  value: 3,
+                  message: "Le nom d'utilisateur doit contenir au moins 3 caractères",
+                },
+                maxLength: {
+                  value: 50,
+                  message: "Le nom d'utilisateur doit contenir au plus 50 caractères",
                 },
               })}
               error={errors.login?.message}
@@ -75,8 +78,7 @@ export const LoginForm = () => {
                 required: "Le mot de passe est obligatoire",
                 minLength: {
                   value: 6,
-                  message:
-                    "Le mot de passe doit contenir au moins 6 caractères",
+                  message: "Le mot de passe doit contenir au moins 6 caractères",
                 },
               })}
               error={errors.password?.message}
