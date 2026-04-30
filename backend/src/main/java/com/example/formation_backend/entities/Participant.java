@@ -2,6 +2,8 @@ package com.example.formation_backend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -36,4 +38,8 @@ public class Participant {
     @ManyToOne
     @JoinColumn(name = "id_profil", nullable = false)
     private Profil profil;
+
+    @ManyToMany(mappedBy = "participants")
+    @Builder.Default
+    private Set<Formation> formations = new HashSet<>();
 }

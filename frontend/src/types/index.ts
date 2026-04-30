@@ -8,3 +8,5 @@ export * from "./domaines/domaine.types";
 export * from "./employeurs/employeur.types";
 export * from "./formateurs/formateur.types";
 export * from "./formateurs/formateur.schema";
+export * from "./formations/formation.types";
+export * from "./formations/formation.schema";

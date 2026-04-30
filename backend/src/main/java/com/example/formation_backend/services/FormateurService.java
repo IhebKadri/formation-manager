@@ -99,7 +99,7 @@ public class FormateurService {
         }
     }
 
-    private FormateurResponseDTO toResponseDTO(Formateur f) {
+    public FormateurResponseDTO toResponseDTO(Formateur f) {
         return FormateurResponseDTO.builder()
                 .id(f.getId())
                 .nom(f.getNom())

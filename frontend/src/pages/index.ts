@@ -5,3 +5,4 @@ export * from "./ProfilePage";
 export * from "./UsersPage";
 export * from "./ParticipantsPage";
 export * from "./FormateursPage";
+export * from "./FormationsPage";
